@@ -35,6 +35,7 @@
       <p>Станьте трішки щасливішим з новим улюбленцем</p>
     </div>
     <nav class="main-nav">
+      <button class="mobile-menu-toggle">☰</button>
       <div class="nav-left">
         <a href="index.html">На головну</a>
         <a href="./products.html">Асортимент</a>
@@ -48,7 +49,10 @@
         </div>
         <a href="#" class="icon">👤</a>
         <a href="#" class="login">Увійти</a>
-        <a href="#" class="cart">🛍</a>
+        <a href="#" class="cart" id="cartIcon">🛍</a>
+        <div class="user-profile">
+          <span id="userName"></span>
+        </div>
       </div>
     </nav>
   </header>
@@ -164,9 +168,102 @@
     </div>
   </footer>
 
-  <script src="js/app.js"></script>
+  <!-- Authentication Modals -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Вхід</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email:</label>
+          <input type="email" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Пароль:</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="auth-button">Увійти</button>
+      </form>
+      <p class="switch-form">Немає облікового запису? <a href="#" id="showRegister">Зареєструватися</a></p>
+    </div>
+  </div>
+
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Реєстрація</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="registerName">Ім'я:</label>
+          <input type="text" id="registerName" required>
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">Email:</label>
+          <input type="email" id="registerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Пароль:</label>
+          <input type="password" id="registerPassword" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Підтвердіть пароль:</label>
+          <input type="password" id="confirmPassword" required>
+        </div>
+        <button type="submit" class="auth-button">Зареєструватися</button>
+      </form>
+      <p class="switch-form">Вже маєте обліковий запис? <a href="#" id="showLogin">Увійти</a></p>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content product-modal-content">
+      <span class="close">&times;</span>
+      <div class="product-detail-container">
+        <div class="product-detail-image">
+          <img id="productImage" src="" alt="Product Image">
+        </div>
+        <div class="product-detail-info">
+          <h2 id="productName"></h2>
+          <p id="productPrice" class="product-price"></p>
+          <div id="productDescription" class="product-description">
+            <p>Детальний опис товару буде відображатися тут.</p>
+          </div>
+          <button class="recomendation__button add-to-cart-btn">Додати у кошик</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Modal -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content cart-modal-content">
+      <span class="close">&times;</span>
+      <h2>Кошик</h2>
+      <div id="cartItems" class="cart-items">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+      <div class="cart-summary">
+        <div class="cart-total">
+          <span>Загальна сума:</span>
+          <span id="cartTotal">0 uah</span>
+        </div>
+        <button id="clearCart" class="cart-button clear-cart">Очистити кошик</button>
+        <button id="checkout" class="cart-button checkout">Оформити замовлення</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <!-- Our scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app.js"></script>
   <script src="js/slider.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/productModal.js"></script>
 
 </body>
 
